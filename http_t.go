@@ -9,7 +9,7 @@ import (
 )
 
 func TestFruits(t *testing.T) {
-	handler := NewHandler()
+	handler := SMHandler()
 
 	server := httptest.NewServer(handler)
 	defer server.Close()
