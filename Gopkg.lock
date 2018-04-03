@@ -48,6 +48,18 @@
   version = "v1.2"
 
 [[projects]]
+  name = "github.com/golang-migrate/migrate"
+  packages = [
+    ".",
+    "database",
+    "database/postgres",
+    "source",
+    "source/file"
+  ]
+  revision = "22f249514de9aa3f8a720a7cabbdd45d294f83a1"
+  version = "v3.2.0"
+
+[[projects]]
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "925541529c1fa6821df4e44ce2723319eb2be768"
@@ -64,6 +76,15 @@
   packages = ["."]
   revision = "5accad8134979a6ac504d456a6c7f1c53da237ca"
   version = "v1.1.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+  packages = [
+    ".",
+    "reflectx"
+  ]
+  revision = "cf35089a197953c69420c8d0cecda90809764b1d"
 
 [[projects]]
   name = "github.com/klauspost/compress"
@@ -86,6 +107,15 @@
   packages = ["."]
   revision = "cb6bfca970f6908083f26f39a79009d608efd5cd"
   version = "v1.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid"
+  ]
+  revision = "d34b9ff171c21ad295489235aec8b6626023cd04"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -291,6 +321,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3c0a875e633660d21570c5f18edf89694c06ec6810535f080fa7ee1df38fe43a"
+  inputs-digest = "d51843b27ebce0ba5efb4fba9f3ea50b953fc62a597db5a00a24fa5696c6715e"
   solver-name = "gps-cdcl"
   solver-version = 1
