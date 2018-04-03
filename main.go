@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/dotchev/sm/postgres"
 	"github.com/dotchev/sm/rest"
+	"github.com/dotchev/sm/storage/postgres"
 	"github.com/gin-gonic/gin"
 )
 
