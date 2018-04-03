@@ -22,7 +22,7 @@ func listenAddr() (addr string) {
 }
 
 func SMHandler() *gin.Engine {
-	_, err := postgres.NewStorage(
+	storage, err := postgres.NewStorage(
 		"postgres://postgres@localhost:5432/postgres?sslmode=disable")
 	if err != nil {
 		panic(err)
@@ -30,7 +30,7 @@ func SMHandler() *gin.Engine {
 
 	router := gin.Default()
 
-	platforms := rest.Platforms{}
+	platforms := rest.NewPlatforms(storage)
 	platforms.Register(router.Group("/v1/platforms"))
 
 	return router

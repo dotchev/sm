@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"github.com/dotchev/sm/model"
 	"github.com/jmoiron/sqlx"
 
 	"github.com/golang-migrate/migrate"
@@ -43,4 +44,16 @@ func (storage *storage) migrate() error {
 		err = nil
 	}
 	return err
+}
+
+func (storage *storage) AddPlatform(platform *model.Platform) error {
+	_, err := storage.db.NamedExec(`INSERT INTO platforms (id, name, type, description)
+		VALUES (:id, :name, :type, :description)`,
+		platform)
+	return err
+}
+
+func (storage *storage) GetPlatforms() (platforms []model.Platform, err error) {
+	err = storage.db.Select(&platforms, "SELECT * FROM platforms ORDER BY name ASC")
+	return
 }
