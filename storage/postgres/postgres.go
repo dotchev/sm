@@ -87,6 +87,9 @@ func (store *pgStorage) UpdatePlatform(platform *storage.Platform) error {
 
 func (store *pgStorage) GetPlatforms() (platforms []storage.Platform, err error) {
 	err = store.db.Select(&platforms, "SELECT * FROM platforms ORDER BY name ASC")
+	if platforms == nil {
+		platforms = []storage.Platform{}
+	}
 	return
 }
 
