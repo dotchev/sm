@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"reflect"
@@ -74,8 +75,7 @@ func (platforms *Platforms) Create(c *gin.Context) {
 }
 
 func (platforms *Platforms) Get(c *gin.Context) {
-	id := c.Param("id")
-	platform, err := platforms.store.GetPlatformByID(id)
+	platform, err := platforms.store.GetPlatform(c.Param("id"))
 	switch {
 	case err == storage.ErrNotFound:
 		sendError(c, http.StatusNotFound, err)
@@ -87,11 +87,33 @@ func (platforms *Platforms) Get(c *gin.Context) {
 }
 
 func (platforms *Platforms) Update(c *gin.Context) {
-
+	var platform storage.Platform
+	if err := c.ShouldBind(&platform); err != nil {
+		sendError(c, http.StatusBadRequest, err)
+		return
+	}
+	platform.ID = c.Param("id")
+	if err := platforms.store.UpdatePlatform(&platform); err != nil {
+		if err == storage.ErrNotFound {
+			sendError(c, http.StatusNotFound, err)
+		} else {
+			sendError(c, http.StatusBadRequest, err)
+		}
+		return
+	}
+	platforms.Get(c)
 }
 
 func (platforms *Platforms) Delete(c *gin.Context) {
-
+	deleted, err := platforms.store.DeletePlatform(c.Param("id"))
+	switch {
+	case err != nil:
+		sendError(c, http.StatusInternalServerError, err)
+	case deleted:
+		c.JSON(http.StatusOK, gin.H{})
+	default:
+		sendError(c, http.StatusNotFound, errors.New("Not found"))
+	}
 }
 
 func (platforms *Platforms) Register(router gin.IRouter) {
