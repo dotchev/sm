@@ -73,7 +73,6 @@ func (store *pgStorage) UpdatePlatform(platform *storage.Platform) error {
 	}
 	update := fmt.Sprintf("UPDATE platforms SET %s WHERE id = :id",
 		strings.Join(set, ", "))
-	println(update)
 	result, err := store.db.NamedExec(update, platform)
 	if err != nil {
 		return err

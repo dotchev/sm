@@ -56,7 +56,7 @@ func (platforms *Platforms) Create(c *gin.Context) {
 		Description string `json:"description"`
 	}
 	var platform Platform
-	if err := c.ShouldBind(&platform); err != nil {
+	if err := c.ShouldBindJSON(&platform); err != nil {
 		sendError(c, http.StatusBadRequest, err)
 		return
 	}
@@ -88,7 +88,7 @@ func (platforms *Platforms) Get(c *gin.Context) {
 
 func (platforms *Platforms) Update(c *gin.Context) {
 	var platform storage.Platform
-	if err := c.ShouldBind(&platform); err != nil {
+	if err := c.ShouldBindJSON(&platform); err != nil {
 		sendError(c, http.StatusBadRequest, err)
 		return
 	}
