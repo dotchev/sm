@@ -2,10 +2,12 @@ package main
 
 import (
 	"os"
+
+	"github.com/dotchev/sm/rest"
 )
 
 func main() {
-	router := SMHandler()
+	router := rest.SMHandler()
 	router.Run(listenAddr())
 }
 
