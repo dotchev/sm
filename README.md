@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/dotchev/sm.svg?branch=master)](https://travis-ci.org/dotchev/sm)
+[![Coverage Status](https://coveralls.io/repos/github/dotchev/sm/badge.svg?branch=master)](https://coveralls.io/github/dotchev/sm?branch=master)
 
 # SM
 
